@@ -3,10 +3,10 @@ Description=gunicorn daemon
 After=network.target
 
 [Service]
-User=gauravghati
+User=oreakintobi
 Group=www-data
-WorkingDirectory=/home/gauravghati/dotworld
-ExecStart=/home/gauravghati/dotworld/env/bin/gunicorn --access-logfile - --workers 3 --bind unix:/home/gauravghati/dotworld/myworld.sock myworld.wsgi:application
+WorkingDirectory=/home/oreakintobi/dotworld
+ExecStart=/home/oreakintobi/dotworld/env/bin/gunicorn --access-logfile - --workers 3 --bind unix:/home/oreakintobi/dotworld/myworld.sock myworld.wsgi:application
 
 [Install]
 WantedBy=multi-user.target
@@ -18,15 +18,15 @@ file name - gunicorn
 
 server {
     listen 80;
-    server_name gauravghati.world;
+    server_name oreakintobi.world;
 
     location = /favicon.ico { access_log off; log_not_found off; }
     location /static/ {
-        root /home/gauravghati/dotworld;
+        root /home/oreakintobi/dotworld;
     }
 
     location / {
         include proxy_params;
-        proxy_pass http://unix:/home/gauravghati/dotworld/myworld.sock;
+        proxy_pass http://unix:/home/oreakintobi/dotworld/myworld.sock;
     }
 }
